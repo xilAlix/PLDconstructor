@@ -2,7 +2,8 @@ import sys
 from PyQt6.QtWidgets import QMainWindow, QWidget, QLabel, QComboBox
 
 from caseConstructor.ui_caseRedactor import Ui_MainWindow
-from general.styles import get_stylesheet
+from general.styles import get_caseRedactor_stylesheet
+from general.config import load_settings
 
 
 class CaseEditorWindow(QMainWindow):
@@ -14,7 +15,9 @@ class CaseEditorWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        self.current_theme = "light"
+        self.settings = load_settings()
+        self.current_theme = self.settings.get("General", {}).get("theme", "dark")
+        self.version = self.settings.get("Version", {}).get("caseRedactor", "0.0.0")
 
         self._setup_ui()
         self.set_theme(self.current_theme)
@@ -22,12 +25,12 @@ class CaseEditorWindow(QMainWindow):
     def set_theme(self, theme_name: str):
         """Переключает тему оформления приложения."""
         self.current_theme = theme_name
-        qss = get_stylesheet(theme_name)
+        qss = get_caseRedactor_stylesheet(theme_name)
         self.setStyleSheet(qss)
 
     def _setup_ui(self):
         """Метод для финальной подгонки UI и настройки динамических виджетов."""
-        self.setWindowTitle("Редактор корпусов")
+        self.setWindowTitle(f"Редактор корпусов v{self.version}")
 
         self.ui.dockWidget.setTitleBarWidget(QWidget())
         self._setup_statusbar()

@@ -1,8 +1,17 @@
+import sys
+from PyQt6.QtWidgets import QApplication
+
+from caseConstructor.editor_window import CaseEditorWindow
 
 
-def print_hi(name):
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+def main():
+    app = QApplication(sys.argv)
 
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    window = CaseEditorWindow()
+    window.show()
 
+    sys.exit(app.exec())
+
+
+if __name__ == "__main__":
+    main()

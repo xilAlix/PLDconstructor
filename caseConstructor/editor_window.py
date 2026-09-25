@@ -21,7 +21,7 @@ class CaseEditorWindow(QMainWindow):
         (0.2540, "Сетка 0,254 мм (10 mil)"),
     ]
 
-    ZOOM_PRESETS = [1, 2, 5, 10, 15, 20, 25, 30, 50]
+    ZOOM_PRESETS = [1, 2, 5, 10, 15, 20, 25, 30, 50, 100]
 
     def __init__(self):
         super().__init__()
@@ -34,6 +34,8 @@ class CaseEditorWindow(QMainWindow):
         self.settings = load_settings()
         self.current_theme = self.settings.get("General", {}).get("theme", "dark")
         self.version = self.settings.get("Version", {}).get("caseRedactor", "0.0.0")
+        start_zoom = self.settings.get("General", {}).get("startZoom", 20)
+        self.start_zoom = self.ZOOM_PRESETS.index(start_zoom)
 
         self._setup_ui()
         self._setup_tab_canvas()
@@ -63,18 +65,20 @@ class CaseEditorWindow(QMainWindow):
         """Метод для финальной подгонки UI и настройки динамических виджетов."""
         self.setWindowTitle(f"Редактор корпусов v{self.version}")
 
-        self.ui.dockWidget.setTitleBarWidget(QWidget())
+        self.ui.dockSubjects.setTitleBarWidget(QWidget())
+        self.ui.dockProperties.setTitleBarWidget(QWidget())
+
         self._setup_statusbar()
 
     def _setup_statusbar(self):
         """Создание и добавление элементов в нижний статус-бар."""
         # Слева
-        self.lbl_zoom = QLabel("20x")
+        self.lbl_zoom = QLabel(f"{self.ZOOM_PRESETS[self.start_zoom]}x")
         self.lbl_zoom.setMinimumWidth(35)
 
         self.slider_zoom = QSlider(Qt.Orientation.Horizontal)
         self.slider_zoom.setRange(0, len(self.ZOOM_PRESETS) - 1)
-        self.slider_zoom.setValue(2)
+        self.slider_zoom.setValue(self.start_zoom)
         self.slider_zoom.setFixedWidth(100)
         self.slider_zoom.valueChanged.connect(self._on_zoom_slider_changed)
 
@@ -105,10 +109,20 @@ class CaseEditorWindow(QMainWindow):
         self.graphics_view.centerOn(0, 0)
 
         self.scene_tab.set_mouse_move_callback(self._update_coordinates_label)
+        self.scene_tab.set_selection_changed_callback(self._on_selection_changed)
 
         initial_grid_size = self.combo_grid.currentData()
         self.scene_tab.set_grid_size(initial_grid_size)
         self._apply_zoom_factor(self.ZOOM_PRESETS[self.slider_zoom.value()])
+
+    def _on_selection_changed(self, selected_items: list):
+        """Обработчик выделения объектов: задел для забивания панели dockProperties."""
+        if not selected_items:
+            return
+
+        first_item = selected_items[0]
+        if hasattr(first_item, 'get_properties'):
+            props = first_item.get_properties()
 
     def _update_coordinates_label(self, x_mm: float, y_mm: float):
         """Выводит точно привязанные координаты в статус-бар."""

@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>581</width>
+    <width>999</width>
     <height>513</height>
    </rect>
   </property>
@@ -19,7 +19,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QTabWidget" name="tabWidget">
+     <widget class="QTabWidget" name="tabCases">
       <property name="currentIndex">
        <number>0</number>
       </property>
@@ -57,21 +57,21 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>581</width>
-     <height>21</height>
+     <width>999</width>
+     <height>26</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="file">
     <property name="title">
      <string>Файл</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menu_2">
+   <widget class="QMenu" name="redact">
     <property name="title">
      <string>Правка</string>
     </property>
    </widget>
-   <widget class="QMenu" name="menu_3">
+   <widget class="QMenu" name="place">
     <property name="title">
      <string>Разместить</string>
     </property>
@@ -81,9 +81,9 @@
      <string>Справка</string>
     </property>
    </widget>
-   <addaction name="menu"/>
-   <addaction name="menu_2"/>
-   <addaction name="menu_3"/>
+   <addaction name="file"/>
+   <addaction name="redact"/>
+   <addaction name="place"/>
    <addaction name="menu_4"/>
   </widget>
   <widget class="QToolBar" name="toolBar">
@@ -109,16 +109,16 @@
     <bool>false</bool>
    </attribute>
   </widget>
-  <widget class="QDockWidget" name="dockWidget">
+  <widget class="QDockWidget" name="dockProperties">
    <property name="minimumSize">
     <size>
-     <width>30</width>
+     <width>130</width>
      <height>120</height>
     </size>
    </property>
    <property name="maximumSize">
     <size>
-     <width>30</width>
+     <width>130</width>
      <height>524287</height>
     </size>
    </property>
@@ -134,6 +134,27 @@
    <widget class="QWidget" name="dockWidgetContents"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QDockWidget" name="dockSubjects">
+   <property name="minimumSize">
+    <size>
+     <width>30</width>
+     <height>120</height>
+    </size>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>30</width>
+     <height>524287</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::NoDockWidgetFeatures</set>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2"/>
+  </widget>
  </widget>
  <resources/>
  <connections/>

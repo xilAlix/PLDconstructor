@@ -5,6 +5,8 @@ from PyQt6.QtGui import QPainter, QColor, QPen
 from PyQt6.QtCore import Qt, QPointF, QLineF
 from PyQt6.QtGui import QWheelEvent
 
+from general.grid import PcbGrid
+
 class PcbGraphicsView(QGraphicsView):
     """Кастомный QGraphicsView для перехвата событий мыши (включая колесико)."""
 
@@ -20,7 +22,6 @@ class PcbGraphicsView(QGraphicsView):
     def wheelEvent(self, event: QWheelEvent):
         """Перехват прокрутки колесика мыши для шагового изменения зума."""
         if self.zoom_callback:
-            # delta() > 0 означает увеличение
             delta = event.angleDelta().y()
             if delta > 0:
                 self.zoom_callback(step=1)
@@ -37,81 +38,60 @@ class PcbGraphicsScene(QGraphicsScene):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.grid_size: float = 1.27
-        self.grid_color: QColor = QColor(150, 150, 150, 51)
-        self.axis_color: QColor = QColor(0, 120, 255, 220)
+        self.grid = PcbGrid(grid_size=1.27)
         self.cursor_pen: QPen = QPen(QColor(220, 220, 220, 200), 0)
 
         self.setSceneRect(-250, -250, 500, 500)
 
         self.mouse_move_callback = None
+        self.selection_changed_callback = None
         self.snapped_pos: QPointF = QPointF(0.0, 0.0)
+
+        self.selectionChanged.connect(self._on_selection_changed)
 
     def set_grid_size(self, size_mm: float):
         """Обновляет шаг сетки и перерисовывает сцену."""
-        self.grid_size = size_mm
+        self.grid.set_grid_size(size_mm)
         self.update()
 
     def set_mouse_move_callback(self, callback):
         """Регистрирует функцию для передачи координат в статус-бар."""
         self.mouse_move_callback = callback
 
+    def set_selection_changed_callback(self, callback):
+        """Регистрирует функцию передачи выбранных элементов в панель свойств."""
+        self.selection_changed_callback = callback
+
+    def _on_selection_changed(self):
+        """Срабатывает при выделении/снятии выделения объектов."""
+        if self.selection_changed_callback:
+            selected_items = self.selectedItems()
+            self.selection_changed_callback(selected_items)
+
     def mouseMoveEvent(self, event: QGraphicsSceneMouseEvent):
         """Перехват движения мыши и привязка к узлам сетки."""
         super().mouseMoveEvent(event)
         raw_pos = event.scenePos()
 
-        if self.grid_size > 0:
-            snapped_x = round(raw_pos.x() / self.grid_size) * self.grid_size
-            snapped_y = round(raw_pos.y() / self.grid_size) * self.grid_size
-        else:
-            snapped_x, snapped_y = raw_pos.x(), raw_pos.y()
-        self.snapped_pos = QPointF(snapped_x, snapped_y)
+        self.snapped_pos = self.grid.get_snapped_point(raw_pos)
 
         if self.mouse_move_callback:
-            self.mouse_move_callback(snapped_x, -snapped_y)
+            self.mouse_move_callback(self.snapped_pos.x(), -self.snapped_pos.y())
         self.update()
 
     def drawBackground(self, painter: QPainter, rect):
-        """Отрисовка полупрозрачной сетки линиями и глобальных осей (0,0)."""
+        """Отрисовка сетки."""
         super().drawBackground(painter, rect)
 
-        if self.grid_size <= 0:
-            return
-
-        # Отрисовка основной фоновой сетки
-        grid_pen = QPen(self.grid_color, 0)
-        painter.setPen(grid_pen)
-
-        first_col = math.floor(rect.left() / self.grid_size)
-        last_col = math.ceil(rect.right() / self.grid_size)
-        first_row = math.floor(rect.top() / self.grid_size)
-        last_row = math.ceil(rect.bottom() / self.grid_size)
-
-        for col in range(first_col, last_col + 1):
-            x = col * self.grid_size
-            painter.drawLine(QLineF(x, rect.top(), x, rect.bottom()))
-
-        for row in range(first_row, last_row + 1):
-            y = row * self.grid_size
-            painter.drawLine(QLineF(rect.left(), y, rect.right(), y))
-
-        # Отрисовка центральных осей X/Y в точке (0, 0)
-        axis_pen = QPen(self.axis_color, 0)  # Косметическая линия
-        painter.setPen(axis_pen)
-
-        if rect.top() <= 0 <= rect.bottom():
-            painter.drawLine(QLineF(rect.left(), 0, rect.right(), 0))
-
-        if rect.left() <= 0 <= rect.right():
-            painter.drawLine(QLineF(0, rect.top(), 0, rect.bottom()))
+        current_zoom = painter.transform().m11()
+        self.grid.draw(painter, rect, current_zoom)
 
     def drawForeground(self, painter: QPainter, rect):
-        """Отрисовка светлого перекрестия KiCad поверх всех элементов."""
+        """Отрисовка светлого перекрестия поверх всех элементов."""
         super().drawForeground(painter, rect)
 
         painter.setPen(self.cursor_pen)
-        cross_size = max(0.5, self.grid_size * 0.8)
+        cross_size = self.grid.grid_size * 0.8
 
         x = self.snapped_pos.x()
         y = self.snapped_pos.y()

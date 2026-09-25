@@ -1,10 +1,11 @@
 {
   "General": {
     "lan": "rus",
-    "theme": "dark"
+    "theme": "dark",
+    "startZoom": 20
   },
 
   "Version": {
-    "caseRedactor": "0.0.6"
+    "caseRedactor": "0.0.8"
   }
 }

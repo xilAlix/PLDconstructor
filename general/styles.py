@@ -94,10 +94,14 @@ def get_caseRedactor_stylesheet(theme_name: str = "dark") -> str:
             color: {colors['text_active']};
         }}
 
-        /* Боковая панель (Dock) */
-        QDockWidget, #dockWidgetContents {{
+        /* Боковые панели (DockWidgets) */
+        QDockWidget {{
             background-color: {colors['bg_dock']};
-            border-left: 1px solid {colors['border']};
+            border: none;
+        }}
+
+        #dockWidgetContents, #dockWidgetContents_2 {{
+            background-color: {colors['bg_dock']};
         }}
 
         /* Вкладки */

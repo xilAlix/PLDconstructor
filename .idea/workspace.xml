@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="892ec1bb-5f20-4e4a-bf04-e691e33fdb68" name="Changes" comment="Config integration&#10;&#10;- Added config file&#10;- Added version counting">
-      <change afterPath="$PROJECT_DIR$/caseConstructor/pcb_scene.py" afterDir="false" />
+    <list default="true" id="892ec1bb-5f20-4e4a-bf04-e691e33fdb68" name="Changes" comment="Things polishment&#10;&#10;-">
+      <change afterPath="$PROJECT_DIR$/general/grid.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/general/items.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/gui/caseRedactor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/assets/gui/caseRedactor.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/caseConstructor/editor_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/caseConstructor/editor_window.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/caseConstructor/pcb_scene.py" beforeDir="false" afterPath="$PROJECT_DIR$/caseConstructor/pcb_scene.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/caseConstructor/ui_caseRedactor.py" beforeDir="false" afterPath="$PROJECT_DIR$/caseConstructor/ui_caseRedactor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/general/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/general/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/general/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/general/styles.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +56,7 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Python.editor_window.executor": "Run",
+    "Python.grid.executor": "Run",
     "Python.main.executor": "Run",
     "Python.pcb_scene.executor": "Run",
     "Python.styles.executor": "Run",
@@ -93,7 +99,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790280947669</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Grid update&#10;&#10;- Added zoom in &amp; zoom out on wheel &amp; bar&#10;- Added grid &amp; central axis&#10;- List of grids are updated&#10;- Now coordinates are working">
+      <option name="closed" value="true" />
+      <created>1790296401914</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1790296401914</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -112,6 +126,7 @@
     <MESSAGE value="- Start 2" />
     <MESSAGE value="- Created disfunctional gui&#10;- Added ability to chose color theme&#10;- Base filler structures are inserted" />
     <MESSAGE value="Config integration&#10;&#10;- Added config file&#10;- Added version counting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Config integration&#10;&#10;- Added config file&#10;- Added version counting" />
+    <MESSAGE value="Grid update&#10;&#10;- Added zoom in &amp; zoom out on wheel &amp; bar&#10;- Added grid &amp; central axis&#10;- List of grids are updated&#10;- Now coordinates are working" />
+    <option name="LAST_COMMIT_MESSAGE" value="Grid update&#10;&#10;- Added zoom in &amp; zoom out on wheel &amp; bar&#10;- Added grid &amp; central axis&#10;- List of grids are updated&#10;- Now coordinates are working" />
   </component>
 </project>

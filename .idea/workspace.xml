@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="892ec1bb-5f20-4e4a-bf04-e691e33fdb68" name="Changes" comment="Things polishment&#10;&#10;-">
-      <change afterPath="$PROJECT_DIR$/general/grid.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/general/items.py" afterDir="false" />
+    <list default="true" id="892ec1bb-5f20-4e4a-bf04-e691e33fdb68" name="Changes" comment="Things polishment&#10;&#10;- Added base zoom setting&#10;- Grid was improved&#10;- Added properties widget&#10;- Subjects are moved to left&#10;- Added base for placement of items &amp; pointing system">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/gui/caseRedactor.ui" beforeDir="false" afterPath="$PROJECT_DIR$/assets/gui/caseRedactor.ui" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/caseConstructor/editor_window.py" beforeDir="false" afterPath="$PROJECT_DIR$/caseConstructor/editor_window.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/caseConstructor/pcb_scene.py" beforeDir="false" afterPath="$PROJECT_DIR$/caseConstructor/pcb_scene.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/caseConstructor/ui_caseRedactor.py" beforeDir="false" afterPath="$PROJECT_DIR$/caseConstructor/ui_caseRedactor.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/general/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/general/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general/styles.py" beforeDir="false" afterPath="$PROJECT_DIR$/general/styles.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo.md" beforeDir="false" afterPath="$PROJECT_DIR$/todo.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +103,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790296401914</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Things polishment&#10;&#10;- Added base zoom setting&#10;- Grid was improved&#10;- Added properties widget&#10;- Subjects are moved to left&#10;- Added base for placement of items &amp; pointing system">
+      <option name="closed" value="true" />
+      <created>1790363543084</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1790363543084</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,6 +131,7 @@
     <MESSAGE value="- Created disfunctional gui&#10;- Added ability to chose color theme&#10;- Base filler structures are inserted" />
     <MESSAGE value="Config integration&#10;&#10;- Added config file&#10;- Added version counting" />
     <MESSAGE value="Grid update&#10;&#10;- Added zoom in &amp; zoom out on wheel &amp; bar&#10;- Added grid &amp; central axis&#10;- List of grids are updated&#10;- Now coordinates are working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Grid update&#10;&#10;- Added zoom in &amp; zoom out on wheel &amp; bar&#10;- Added grid &amp; central axis&#10;- List of grids are updated&#10;- Now coordinates are working" />
+    <MESSAGE value="Things polishment&#10;&#10;- Added base zoom setting&#10;- Grid was improved&#10;- Added properties widget&#10;- Subjects are moved to left&#10;- Added base for placement of items &amp; pointing system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Things polishment&#10;&#10;- Added base zoom setting&#10;- Grid was improved&#10;- Added properties widget&#10;- Subjects are moved to left&#10;- Added base for placement of items &amp; pointing system" />
   </component>
 </project>
